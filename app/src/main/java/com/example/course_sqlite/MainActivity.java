@@ -3,6 +3,7 @@ package com.example.course_sqlite;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         view = findViewById(R.id.btnview);
 
         db = new DbHelper(this);
+
+
+        startActivity(new Intent(MainActivity.this,Register_page.class));
+
+
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override

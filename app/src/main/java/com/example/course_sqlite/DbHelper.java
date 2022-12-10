@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import androidx.annotation.Nullable;
+import android.widget.Toast;
 
 public class DbHelper extends SQLiteOpenHelper {
+    private Context context;
     public DbHelper(Context context) {
         super(context, "userdatainfo.db",null,1);
 
@@ -77,5 +77,19 @@ public class DbHelper extends SQLiteOpenHelper {
         return  cursor;
     }
 
+    public boolean RegisterUserLogin(String userName, String userPass){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("userName",userName);
+            contentValues.put("userPass",userPass);
+            db.insert("usersTable",null,contentValues);
+            return true;
+        }catch(Exception e){
+            Toast.makeText(context,e.getMessage(),Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+    }
 
 }
